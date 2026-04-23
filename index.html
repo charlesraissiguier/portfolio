@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FAFAF7" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Charles Raissiguier — Designer web freelance à Lille. Je crée des sites web premium pour les professionnels qui veulent une vraie présence en ligne." />
+  <meta name="keywords" content="designer web, freelance, Lille, site web, développeur freelance, site vitrine, site professionnel" />
+  <meta property="og:title" content="Charles Raissiguier — Designer web freelance à Lille" />
+  <meta property="og:description" content="Sites web premium pour professionnels. Disponible pour de nouveaux projets." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <title>Charles Raissiguier — Designer web freelance à Lille</title>
+
+  <!-- Google Fonts : DM Sans + Instrument Serif + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN Play (config light, palette sobre) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:      '#FAFAF7', // blanc cassé chaud
+            ink:     '#1A1A1A', // texte principal
+            muted:   '#6B6B6B', // texte secondaire
+            hairline:'#00000010',// bordures très fines
+            accent:  '#B5553D', // terracotta chaud
+            card:    '#FFFFFF', // fond cards Réalisations
+          },
+          fontFamily: {
+            sans:  ['"DM Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono:  ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Instrument Serif' font-style='italic' fill='%23B5553D'%3EC%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="bg-bg text-ink font-sans antialiased selection:bg-accent/20 selection:text-ink">
+
+  <!-- Curseur personnalisé (desktop pointer:fine uniquement, masqué sinon) -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════ NAVIGATION ══════════════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
+    <nav class="mx-auto max-w-6xl px-6 md:px-10 py-5 flex items-center justify-between gap-4">
+      <a href="#hero" class="hidden sm:inline-block text-[17px] font-serif text-ink hover:text-accent transition-colors duration-200 whitespace-nowrap">
+        Charles Raissiguier
+      </a>
+      <ul class="flex items-center gap-5 md:gap-10 text-[14px] md:text-[15px] ml-auto">
+        <li><a href="#realisations" class="nav-link whitespace-nowrap">Réalisations</a></li>
+        <li><a href="#about"        class="nav-link whitespace-nowrap">À propos</a></li>
+        <li><a href="#contact"      class="nav-link whitespace-nowrap">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════ HERO ════════════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-[100svh] flex flex-col justify-between px-6 md:px-10 pt-32 pb-10 md:pb-12">
+    <!-- Placeholder top : libre, la navbar occupe l'espace au-dessus -->
+    <div></div>
+
+    <!-- Contenu principal centré verticalement -->
+    <div class="max-w-6xl mx-auto w-full">
+      <p id="hero-eyebrow" class="text-[13px] font-mono uppercase tracking-[0.2em] text-muted mb-8">
+        Designer web freelance · Lille
+      </p>
+
+      <h1 id="hero-title" class="font-serif text-ink leading-[0.95] tracking-tight"
+          style="font-size: clamp(3.5rem, 13vw, 10rem);">
+        <span class="title-line">Charles</span>
+        <span class="title-line">Raissiguier</span>
+      </h1>
+
+      <p id="hero-tagline" class="mt-10 md:mt-14 max-w-2xl text-lg md:text-2xl leading-relaxed text-ink/80">
+        Je crée des sites web premium pour les professionnels qui veulent
+        une vraie <span class="font-serif italic text-accent">présence</span> en ligne.
+      </p>
+
+      <div id="hero-cta-wrap" class="mt-10 md:mt-14 inline-block">
+        <a id="hero-cta" href="#realisations" class="group inline-flex items-center gap-3 text-ink border-b border-ink pb-1.5 hover:border-accent hover:text-accent transition-colors duration-200 cursor-pointer">
+          <span class="text-base md:text-lg">Voir mes réalisations</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ligne discrète en bas -->
+    <div id="hero-badge" class="flex items-center gap-3 text-[13px] font-mono uppercase tracking-[0.15em] text-muted">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent/60"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+      </span>
+      Disponible pour de nouveaux projets
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ RÉALISATIONS ═════════════════════════════════════════════════ -->
+  <section id="realisations" class="relative py-24 md:py-40">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <header class="mb-20 md:mb-32">
+        <p class="reveal-num text-[13px] font-mono uppercase tracking-[0.2em] text-muted mb-4">— 01</p>
+        <h2 class="reveal-title font-serif leading-[1] tracking-tight" style="font-size: clamp(2.75rem, 6vw, 5rem);">
+          Sélection récente
+        </h2>
+      </header>
+
+      <!-- Wrapper stagger : les 4 articles apparaissent 100ms après le précédent -->
+      <div class="reveal-stagger">
+
+      <!-- ═══ PROJET 1 — Osteria Marcello (rempli) ═══ -->
+      <article class="project grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center mb-32 md:mb-48">
+        <!-- Image à gauche -->
+        <div class="md:col-span-7 order-1 md:order-1">
+          <a href="https://marcello-elegance.lovable.app/" target="_blank" rel="noopener noreferrer" class="project-visual group" aria-label="Voir le site d'Osteria Marcello (nouvel onglet)">
+            <!-- Ratio 16:10 maintenu via padding-top -->
+            <div class="project-img-wrap">
+              <!-- Pour passer à la vidéo (recommandé sur desktop),
+                   ajouter avant le <img> le bloc suivant :
+                   <video class="project-video" autoplay muted loop playsinline
+                          poster="images/osteria-poster.jpg">
+                     <source src="videos/osteria-scroll.mp4" type="video/mp4">
+                   </video>
+                   Sur mobile (hover:none), la vidéo est automatiquement masquée
+                   → l'image ci-dessous reste le fallback. Voir CSS .project-video.
+              -->
+              <img
+                src="images/osteria-marcello.webp"
+                alt="Aperçu du site Osteria Marcello"
+                loading="lazy"
+                decoding="async"
+                class="project-img"
+                onerror="this.classList.add('missing'); this.removeAttribute('src');" />
+              <!-- Fallback visuel si l'image n'existe pas encore -->
+              <div class="project-img-fallback">
+                <span class="font-serif italic">Osteria Marcello</span>
+                <span class="font-mono text-xs opacity-60 mt-1">Screenshot 16:10 · à remplacer</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Texte à droite -->
+        <div class="md:col-span-5 order-2 md:order-2">
+          <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-4">
+            Restaurant italien · Vieux-Lille · 2026
+          </p>
+          <h3 class="font-serif leading-[1.05]" style="font-size: clamp(2rem, 3.5vw, 3rem);">
+            Osteria Marcello
+          </h3>
+          <p class="mt-6 text-base md:text-lg leading-relaxed text-ink/75">
+            Un site qui respire l'élégance d'une trattoria familiale, pensé pour que
+            les réservations affluent dès le premier regard. Typographie éditoriale
+            et palette chaude au service d'une identité authentique.
+          </p>
+          <a href="https://marcello-elegance.lovable.app/" target="_blank" rel="noopener noreferrer" class="project-link mt-8">
+            Voir le site live
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ PROJET 2 — [PLACEHOLDER] ═══ -->
+      <article class="project grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center mb-32 md:mb-48">
+        <!-- Image à droite (alternance) -->
+        <div class="md:col-span-7 order-1 md:order-2">
+          <a href="#" class="project-visual group" data-placeholder="true" aria-label="Projet à venir">
+            <div class="project-img-wrap">
+              <div class="project-img-fallback">
+                <span class="font-serif italic">Projet 2</span>
+                <span class="font-mono text-xs opacity-60 mt-1">[PLACEHOLDER] screenshot 16:10 à ajouter</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="md:col-span-5 order-2 md:order-1">
+          <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-4">
+            [PLACEHOLDER] Secteur · Ville · Année
+          </p>
+          <h3 class="font-serif leading-[1.05]" style="font-size: clamp(2rem, 3.5vw, 3rem);">
+            [PLACEHOLDER] Nom du projet
+          </h3>
+          <p class="mt-6 text-base md:text-lg leading-relaxed text-ink/75">
+            [PLACEHOLDER] Description 1-2 phrases racontant l'intention du projet
+            — pas la technique. Mettez l'accent sur l'impact pour le client et
+            l'émotion que dégage le site.
+          </p>
+          <a href="#" class="project-link mt-8">
+            Voir le site live
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ PROJET 3 — [PLACEHOLDER] ═══ -->
+      <article class="project grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center mb-32 md:mb-48">
+        <div class="md:col-span-7 order-1 md:order-1">
+          <a href="#" class="project-visual group" data-placeholder="true" aria-label="Projet à venir">
+            <div class="project-img-wrap">
+              <div class="project-img-fallback">
+                <span class="font-serif italic">Projet 3</span>
+                <span class="font-mono text-xs opacity-60 mt-1">[PLACEHOLDER] screenshot 16:10 à ajouter</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="md:col-span-5 order-2 md:order-2">
+          <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-4">
+            [PLACEHOLDER] Secteur · Ville · Année
+          </p>
+          <h3 class="font-serif leading-[1.05]" style="font-size: clamp(2rem, 3.5vw, 3rem);">
+            [PLACEHOLDER] Nom du projet
+          </h3>
+          <p class="mt-6 text-base md:text-lg leading-relaxed text-ink/75">
+            [PLACEHOLDER] Description 1-2 phrases racontant l'intention du projet
+            — pas la technique. Mettez l'accent sur l'impact pour le client et
+            l'émotion que dégage le site.
+          </p>
+          <a href="#" class="project-link mt-8">
+            Voir le site live
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ═══ PROJET 4 — [PLACEHOLDER] ═══ -->
+      <article class="project grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+        <div class="md:col-span-7 order-1 md:order-2">
+          <a href="#" class="project-visual group" data-placeholder="true" aria-label="Projet à venir">
+            <div class="project-img-wrap">
+              <div class="project-img-fallback">
+                <span class="font-serif italic">Projet 4</span>
+                <span class="font-mono text-xs opacity-60 mt-1">[PLACEHOLDER] screenshot 16:10 à ajouter</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="md:col-span-5 order-2 md:order-1">
+          <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-4">
+            [PLACEHOLDER] Secteur · Ville · Année
+          </p>
+          <h3 class="font-serif leading-[1.05]" style="font-size: clamp(2rem, 3.5vw, 3rem);">
+            [PLACEHOLDER] Nom du projet
+          </h3>
+          <p class="mt-6 text-base md:text-lg leading-relaxed text-ink/75">
+            [PLACEHOLDER] Description 1-2 phrases racontant l'intention du projet
+            — pas la technique. Mettez l'accent sur l'impact pour le client et
+            l'émotion que dégage le site.
+          </p>
+          <a href="#" class="project-link mt-8">
+            Voir le site live
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      </div><!-- /.reveal-stagger -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ À PROPOS ═════════════════════════════════════════════════════ -->
+  <section id="about" class="relative py-24 md:py-40 bg-white/40">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <header class="mb-16 md:mb-24">
+        <p class="reveal-num text-[13px] font-mono uppercase tracking-[0.2em] text-muted mb-4">— 02</p>
+        <h2 class="reveal-title font-serif leading-[1] tracking-tight" style="font-size: clamp(2.75rem, 6vw, 5rem);">
+          À propos
+        </h2>
+      </header>
+
+      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+        <!-- Photo circulaire -->
+        <div class="md:col-span-4 flex justify-center md:justify-start">
+          <div class="portrait">
+            <!-- Remplacer images/portrait.webp par une photo carrée -->
+            <img
+              src="images/portrait.webp"
+              alt="Charles Raissiguier"
+              loading="lazy"
+              decoding="async"
+              class="portrait-img"
+              onerror="this.classList.add('missing'); this.removeAttribute('src');" />
+            <div class="portrait-fallback">CR</div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="md:col-span-8 space-y-6 text-base md:text-lg leading-relaxed text-ink/80">
+          <p>
+            [PLACEHOLDER — PARAGRAPHE 1] Ce que je fais et ma philosophie.
+            Racontez en 3-4 lignes votre approche du design web : soin du détail,
+            typographie, lenteur maîtrisée, chaque site pensé comme un vêtement
+            sur-mesure. Évitez toute référence à une timeline ou des dates.
+          </p>
+          <p>
+            [PLACEHOLDER — PARAGRAPHE 2] Pourquoi vous travaillez avec des
+            professionnels lillois. Parlez de votre ancrage local, de la
+            rencontre en personne, de la compréhension du tissu commerçant
+            du Nord, de la relation longue que vous entretenez avec chaque
+            client.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sous-section optionnelle : mini-projets perso -->
+      <div class="mt-24 md:mt-32">
+        <p class="reveal-num text-[13px] font-mono uppercase tracking-[0.2em] text-muted mb-10">
+          Également passionné par
+        </p>
+        <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
+
+          <a href="#" class="side-card" target="_blank" rel="noopener noreferrer">
+            <div class="side-card-icon">
+              <!-- Icon: code -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h4 class="side-card-title">[PLACEHOLDER] Projet perso 1</h4>
+            <p class="side-card-desc">[PLACEHOLDER] Une phrase pour décrire.</p>
+            <span class="side-card-link">GitHub →</span>
+          </a>
+
+          <a href="#" class="side-card" target="_blank" rel="noopener noreferrer">
+            <div class="side-card-icon">
+              <!-- Icon: cpu -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+            </div>
+            <h4 class="side-card-title">[PLACEHOLDER] Projet perso 2</h4>
+            <p class="side-card-desc">[PLACEHOLDER] Une phrase pour décrire.</p>
+            <span class="side-card-link">Démo →</span>
+          </a>
+
+          <a href="#" class="side-card" target="_blank" rel="noopener noreferrer">
+            <div class="side-card-icon">
+              <!-- Icon: feather -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+            </div>
+            <h4 class="side-card-title">[PLACEHOLDER] Projet perso 3</h4>
+            <p class="side-card-desc">[PLACEHOLDER] Une phrase pour décrire.</p>
+            <span class="side-card-link">GitHub →</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ CONTACT ══════════════════════════════════════════════════════ -->
+  <section id="contact" class="relative py-24 md:py-40">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <header class="mb-16 md:mb-20">
+        <p class="reveal-num text-[13px] font-mono uppercase tracking-[0.2em] text-muted mb-4">— 03</p>
+        <h2 class="reveal-title font-serif leading-[1.05] tracking-tight" style="font-size: clamp(2.75rem, 6vw, 5rem);">
+          Un projet en tête ?
+        </h2>
+        <p class="reveal mt-6 md:mt-8 text-lg md:text-xl text-ink/75 max-w-2xl leading-relaxed">
+          Parlons-en, la première discussion est gratuite et sans engagement.
+        </p>
+      </header>
+
+      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <!-- Infos contact -->
+        <div class="space-y-6">
+          <div>
+            <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-2">Email</p>
+            <a href="mailto:charles@example.com" class="link-slide text-xl md:text-2xl">
+              charles@example.com
+            </a>
+          </div>
+          <div>
+            <p class="font-mono text-[12px] uppercase tracking-[0.2em] text-muted mb-2">Téléphone</p>
+            <a href="tel:+33600000000" class="link-slide text-xl md:text-2xl">
+              +33 6 00 00 00 00
+            </a>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <form id="contact-form" class="space-y-5" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+          <div class="form-field">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+            <div class="form-error" data-error-for="name"></div>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+            <div class="form-error" data-error-for="email"></div>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <div class="form-error" data-error-for="message"></div>
+          </div>
+
+          <button type="submit" class="submit-btn group">
+            <span class="submit-label">Envoyer</span>
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+
+          <p class="text-[13px] font-mono uppercase tracking-[0.15em] text-muted">
+            Je réponds sous 24 heures
+          </p>
+
+          <div id="form-success" class="hidden rounded-md p-4 bg-accent/10 border border-accent/30 text-accent text-sm">
+            ✓ Message envoyé. Je reviens vers vous très vite.
+          </div>
+          <div id="form-failure" class="hidden rounded-md p-4 bg-red-50 border border-red-200 text-red-700 text-sm">
+            Une erreur est survenue. Vous pouvez m'écrire directement à <a href="mailto:charles@example.com" class="underline">charles@example.com</a>.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ FOOTER ═══════════════════════════════════════════════════════ -->
+  <footer class="border-t border-hairline py-10 md:py-12">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-[13px] text-muted">
+      <div>
+        <span class="text-ink">Charles Raissiguier</span> · <span id="footer-year">2026</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_HANDLE" target="_blank" rel="noopener noreferrer" class="link-slide">LinkedIn</a>
+        <a href="/mentions-legales.html" class="link-slide">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP (pour orchestration animations hero) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
