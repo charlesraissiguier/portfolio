@@ -1,0 +1,409 @@
+/* =========================================================================
+   Portfolio · Charles Raissiguier
+   Style : éditorial minimaliste · light · accent terracotta
+   ========================================================================= */
+
+/* ---------- Réglages globaux (#6) ---------- */
+:root {
+  --tr-duration: 400ms;
+  --tr-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --accent: #B5553D;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --tr-duration: 200ms;
+    --tr-ease: ease;
+  }
+}
+
+/* ---------- Base ---------- */
+/* Force le rendu des form controls en light mode même si l'OS est en dark :
+   sans ça, Chrome/Safari rendent les <input> avec un fond sombre par défaut. */
+html { color-scheme: light; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  min-height: 100vh;
+  font-feature-settings: 'ss01', 'ss03';
+  overflow-x: hidden;
+}
+
+/* ---------- Reveal génériques (legacy fade+translate) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms var(--tr-ease),
+              transform 800ms var(--tr-ease);
+  will-change: opacity, transform;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ---------- Reveals renforcés (#4) ---------- */
+/* Numéro de section "— 01" : fade simple */
+.reveal-num {
+  opacity: 0;
+  transition: opacity 600ms var(--tr-ease);
+}
+.reveal-num.in-view { opacity: 1; }
+
+/* Titre : clip reveal top → bottom (comme sorti d'une fente) */
+.reveal-title {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(-8px);
+  transition: clip-path 700ms var(--tr-ease),
+              transform 700ms var(--tr-ease);
+}
+.reveal-title.in-view {
+  clip-path: inset(0 0 0 0);
+  transform: translateY(0);
+}
+
+/* Stagger : chaque enfant direct arrive 100ms après le précédent */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms var(--tr-ease),
+              transform 600ms var(--tr-ease);
+}
+.reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(1)  { transition-delay:   0ms; }
+.reveal-stagger.in-view > *:nth-child(2)  { transition-delay: 100ms; }
+.reveal-stagger.in-view > *:nth-child(3)  { transition-delay: 200ms; }
+.reveal-stagger.in-view > *:nth-child(4)  { transition-delay: 300ms; }
+.reveal-stagger.in-view > *:nth-child(5)  { transition-delay: 400ms; }
+.reveal-stagger.in-view > *:nth-child(6)  { transition-delay: 500ms; }
+.reveal-stagger.in-view > *:nth-child(7)  { transition-delay: 600ms; }
+.reveal-stagger.in-view > *:nth-child(8)  { transition-delay: 700ms; }
+
+/* Reduced-motion : aplatir TOUS les reveals à un fade simple 200ms */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-num, .reveal-title, .reveal-stagger > * {
+    transform: none !important;
+    clip-path: none !important;
+    transition-duration: 200ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ---------- Navigation ---------- */
+#navbar { background: transparent; border-bottom: 1px solid transparent; }
+#navbar.scrolled {
+  background: rgba(250, 250, 247, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  backdrop-filter: saturate(160%) blur(6px);
+  -webkit-backdrop-filter: saturate(160%) blur(6px);
+}
+
+/* Lien avec underline qui slide de gauche à droite au hover (#2a) */
+.nav-link,
+.link-slide {
+  position: relative;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: color var(--tr-duration) var(--tr-ease);
+}
+.nav-link::after,
+.link-slide::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--tr-duration) var(--tr-ease);
+}
+.nav-link:hover,
+.nav-link.active,
+.link-slide:hover { color: var(--accent); }
+.nav-link:hover::after,
+.nav-link.active::after,
+.link-slide:hover::after { transform: scaleX(1); }
+
+/* ---------- Hero ---------- */
+#hero h1 { letter-spacing: -0.02em; }
+
+/* Structure du titre splitté en lignes (indispensable pour le stagger GSAP).
+   Les éléments restent visibles par défaut : GSAP les masque en JS au load
+   avant de les animer (progressive enhancement). */
+#hero-title .title-line {
+  display: block;
+  white-space: nowrap;
+}
+.hero-title-letter {
+  display: inline-block;
+}
+
+/* ---------- Réalisations : project cards (#2b) ---------- */
+.project-visual {
+  display: block;
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--tr-duration) ease-out,
+              box-shadow var(--tr-duration) ease-out;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 20px 60px -30px rgba(0, 0, 0, 0.1);
+}
+.project-visual:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(181, 85, 61, 0.15);
+}
+
+/* Ratio 16:10 via padding trick */
+.project-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 62.5%;
+  overflow: hidden;
+}
+.project-img,
+.project-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--tr-duration) ease-out;
+}
+.project-visual:hover .project-img,
+.project-visual:hover .project-video { transform: scale(1.02); }
+.project-img.missing { display: none; }
+
+/* Support vidéo (#3)
+   - Par défaut : vidéo masquée, image visible.
+   - Desktop hover fine : vidéo visible (si présente), image cachée.
+   - Mobile / touch : seule l'image reste, la vidéo n'est jamais chargée visuellement.
+*/
+.project-video { display: none; }
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .project-video { display: block; }
+  .project-visual:has(.project-video) .project-img { display: none; }
+}
+
+/* Fallback visible tant qu'aucune image n'existe */
+.project-img-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, #F1EDE6 0%, #E8E1D5 100%);
+  color: #6B6B6B;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  pointer-events: none;
+}
+.project-img:not(.missing) + .project-img-fallback,
+.project-video + .project-img-fallback { display: none; }
+
+/* Lien "Voir le site live" : même pattern underline slide */
+.project-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #1A1A1A;
+  padding-bottom: 0.35rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color var(--tr-duration) var(--tr-ease);
+}
+.project-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--tr-duration) var(--tr-ease);
+}
+.project-link:hover { color: var(--accent); }
+.project-link:hover::after { transform: scaleX(1); }
+
+/* ---------- About : portrait ---------- */
+.portrait {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F1EDE6 0%, #E8E1D5 100%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+@media (min-width: 768px) {
+  .portrait { width: 280px; height: 280px; }
+}
+.portrait-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-img.missing { display: none; }
+.portrait-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 6rem;
+  color: var(--accent);
+  pointer-events: none;
+}
+.portrait-img:not(.missing) + .portrait-fallback { display: none; }
+
+/* ---------- About : mini-projets perso ---------- */
+.side-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border-radius: 0.875rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform var(--tr-duration) ease-out,
+              border-color var(--tr-duration) ease-out,
+              box-shadow var(--tr-duration) ease-out;
+}
+.side-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(181, 85, 61, 0.3);
+  box-shadow: 0 15px 40px -15px rgba(181, 85, 61, 0.12);
+}
+.side-card-icon { width: 40px; height: 40px; color: var(--accent); }
+.side-card-icon svg { width: 100%; height: 100%; }
+.side-card-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-top: 0.25rem;
+}
+.side-card-desc {
+  font-size: 0.9rem;
+  color: #6B6B6B;
+  line-height: 1.5;
+  flex: 1;
+}
+.side-card-link {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #1A1A1A;
+  margin-top: 0.5rem;
+  transition: color var(--tr-duration) var(--tr-ease);
+}
+.side-card:hover .side-card-link { color: var(--accent); }
+
+/* ---------- Form ---------- */
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #6B6B6B;
+}
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: #1A1A1A;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color var(--tr-duration) var(--tr-ease);
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+.form-field textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+.form-field.error input,
+.form-field.error textarea { border-bottom-color: #DC2626; }
+.form-error { font-size: 0.75rem; color: #DC2626; min-height: 1rem; }
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  background: #1A1A1A;
+  color: #FAFAF7;
+  font-size: 0.95rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--tr-duration) var(--tr-ease);
+}
+.submit-btn:hover { background: var(--accent); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Curseur custom (#5) ---------- */
+#cursor-dot {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  transform: translate3d(var(--x, -50px), var(--y, -50px), 0) translate(-50%, -50%);
+  transition: width 200ms var(--tr-ease),
+              height 200ms var(--tr-ease),
+              background-color 200ms var(--tr-ease);
+  will-change: transform;
+}
+/* Affiché uniquement sur desktop avec vraie souris */
+@media (hover: hover) and (pointer: fine) {
+  #cursor-dot { display: block; }
+}
+/* Désactivé en reduced-motion (accessibilité) */
+@media (prefers-reduced-motion: reduce) {
+  #cursor-dot { display: none !important; }
+}
+#cursor-dot.cursor-dot--hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(181, 85, 61, 0.18);
+}
+
+/* ---------- Focus visible ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  #navbar, #cursor-dot { display: none !important; }
+  body { background: white; color: black; }
+  .reveal, .reveal-num, .reveal-title, .reveal-stagger > * {
+    opacity: 1 !important; transform: none !important; clip-path: none !important;
+  }
+}

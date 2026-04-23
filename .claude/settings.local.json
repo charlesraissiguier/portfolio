@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp *)",
+      "PowerShell(claude mcp add magic --scope user --env API_KEY=\"47d96ce7fe45a7571a269a18ead7d366c92d98f599e6cd82abd6e951441be98a\" -- npx -y \"@21st-dev/magic@latest\")",
+      "Bash(mkdir -p ~/.claude/skills)",
+      "Bash(git clone *)",
+      "PowerShell(npx -y uipro-cli init --ai claude --global)",
+      "Bash(npx -y uipro-cli init --ai claude --global)",
+      "Bash(npx -y uipro-cli init --help)",
+      "Bash(npx -y uipro-cli init --ai claude)",
+      "Bash(mv ~/.claude/.claude/skills/ui-ux-pro-max ~/.claude/skills/ui-ux-pro-max)",
+      "Bash(rmdir ~/.claude/.claude/skills ~/.claude/.claude)",
+      "Bash(npm root *)",
+      "Bash(where claude *)",
+      "Read(//c/Users/balma/**)",
+      "Read(//c/Users/balma/.config/**)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('keys:', list\\(d.keys\\(\\)\\)\\); print\\('mcpServers:', json.dumps\\(d.get\\('mcpServers', {}\\), indent=2\\)[:2000]\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python \"C:/Users/balma/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"developer portfolio software engineer modern premium dark elegant\" --design-system -p \"Portfolio\")",
+      "Bash(python \"C:/Users/balma/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"animation accessibility hover\" --domain ux -n 5)"
+    ]
+  }
+}
